@@ -76,12 +76,6 @@ const route = useRoute();
 const router = useRouter();
 
 
-// watch(() => route, () => {
-//   console.log('route changed')
-// }, {
-//   deep: true
-// })
-
 const toggleModal = () => {
   modalActive.value = !modalActive.value;
 };

@@ -39,7 +39,7 @@
       <Suspense>
         <CityList />
         <template #fallback>
-          <CityCardSkeleton v-if="listCity.length != 0" v-for="n in listCity.length" />
+          <CityCardSkeleton v-if="listCity.length == 0" v-for="n in listCity.length" />
         </template>
       </Suspense>
     </div>

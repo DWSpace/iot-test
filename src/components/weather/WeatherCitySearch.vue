@@ -39,7 +39,7 @@
       <Suspense>
         <CityList />
         <template #fallback>
-          <CityCardSkeleton v-if="listCity.length == 0" v-for="n in listCity.length" />
+          <CityCardSkeleton v-for="n in listCity()" />
         </template>
       </Suspense>
     </div>
@@ -56,7 +56,10 @@ const searchResults = ref(null);
 const queryTimeout = ref(null);
 const searchError = ref(null);
 
-const listCity = JSON.parse(localStorage.getItem('savedCities'));
+const listCity = () => {
+  const getListCity = JSON.parse(localStorage.getItem('savedCities'));
+  return getListCity === null ? 0 : getListCity.length
+}
 
 const getSearchResults = () => {
   clearTimeout(queryTimeout.value);

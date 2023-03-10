@@ -12,19 +12,25 @@ const router = createRouter({
     {
       path: '/graph',
       name: 'graph',
-      component: () => import('../components/layouts/Graph.vue')
+      component: () => import('../components/layouts/Graph.vue'),
+      meta: {
+        title:'đồ thị iot'
+      }
     },
     {
       path: '/general',
       name: 'general',
-      component: () => import('../components/layouts/General.vue')
+      component: () => import('../components/layouts/General.vue'),
+      meta: {
+        title:'trang general'
+      }
     },
     {
       path: '/diary',
       name: 'diary',
       component: () => import('../components/layouts/DayDiary.vue'),
       meta: {
-        title:'修理実施情報事入力フォーム'
+        title:'lam trang nhat ky'
       }
     },
     {
@@ -32,7 +38,7 @@ const router = createRouter({
       name: 'weather',
       component: () => import('../components/layouts/Weather.vue'),
       meta: {
-        title: 'Weather | Woodlink'
+        title: '天気予報 | Woodlink'
       },
       children: [
         {

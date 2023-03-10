@@ -69,14 +69,11 @@ import { useRoute, useRouter } from 'vue-router'
 import WeatherInfo from "../weather/WeatherInfo.vue";
 const modalActive = ref(null);
 
-
-
-
 const route = useRoute();
 const router = useRouter();
 
 router.beforeEach((to, from, next) => {
-  document.title = `${to.params.city ? `${to.params.city} Weather | Woodlink` : to.meta.title}`;
+  document.title = `${to.params.city ? `${to.params.city} 天気予報 | Woodlink` : to.meta.title}`;
   next()
 })
 

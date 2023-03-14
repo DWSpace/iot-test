@@ -1,5 +1,5 @@
 <template>
-    <div class="max-w-4xl relative left-1/2 myDivToPrint tudinhnghia bg-white p-24 lg:p-5 font-NotoJP">
+    <div class="max-w-4xl relative left-1/2 print-div move-left bg-white p-24 lg:p-5 font-NotoJP">
         <p class="text-center font-bold text-2xl">工事（修理）実施報告事</p>
         <p class="text-right font-medium text-xl pt-5">ウッドリンク株式会社</p>
         <p class="text-right font-medium text-xl">住宅資材事業部</p>
@@ -27,7 +27,6 @@
                 </div>
 
             </div>
-
 
 
             <!-- <div class="grid lg:grid-cols-1 items-center justify-items-start">
@@ -101,8 +100,9 @@
                 </div>
                 <div class="col-span-5 lg:grid-cols-1">
                     <select v-model="objData.body.process"
-                        class="select bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:border-blue-500 block w-full p-2.5">
-                        <option class='text-base' v-for="(item, index) in process" :key="index">{{ item }}
+                        class="select scroll-auto bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:border-blue-500 block w-full p-2.5">
+                        <option class='text-base' v-for="(item, index) in process" :key="index">
+                            {{ item }}
                         </option>
                     </select>
                 </div>
@@ -111,7 +111,7 @@
                     <label for="phone" class="mb-2 text-xl font-medium text-gray-900">設備名称</label>
                 </div>
                 <div class="col-span-5 lg:grid-cols-1">
-                    <input v-model="objData.body.reason" type="text" id="phone"
+                    <input v-model="objData.body.machinePartName" type="text" id="phone"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:border-blue-500 block w-full p-2.5"
                         required>
                 </div>
@@ -247,7 +247,7 @@ const objData = reactive({
     },
     body: {
         to: parseAfterDate,
-        process: '工程?',
+        process: '',
         machinePartName: '',
         reason: '',
         nameOfReplacedItem: '',
@@ -269,12 +269,12 @@ const process = [
     '断熱材',
     'プレウォール'];
 
-const facility = [
-    '横架材ライン',
-    '柱材ライン',
-    '束ライン',
-    'クロスカット',
-    '木口加工機'];
+// const facility = [
+//     '横架材ライン',
+//     '柱材ライン',
+//     '束ライン',
+//     'クロスカット',
+//     '木口加工機'];
 
 function validateObj(obj) {
     const isHeadNotEmpty = Object.values(obj.head).every(x => x !== null && x !== '');
@@ -283,19 +283,13 @@ function validateObj(obj) {
         obj.body.total >= 0 ? true : false &&
             obj.body.laborFee >= 0 ? true : false &&
                 obj.body.itemCost >= 0 ? true : false;
-    const isProcessNotEmpty = obj.body.process != '工程?' ? true : false &&
-        obj.body.machinePartName != '設備名称?' ? true : false;
-    return isHeadNotEmpty && isBodyNotEmpty && isCostNotEmpty && isProcessNotEmpty
+    return isHeadNotEmpty && isBodyNotEmpty && isCostNotEmpty
 }
-
-// const log = () => {
-
-//     console.log(objData)
-//     console.log(validateObj(objData))
-// }
 
 const log = async () => {
     const isOK = validateObj(objData)
+    console.log(isOK)
+    console.log(objData)
     if (isOK) {
         document.getElementById("my-modal2").checked = true;
         await axios
@@ -318,13 +312,13 @@ const log = async () => {
 }
 </script>
 
-<style scoped>
-.tudinhnghia {
+<style lang='scss' scoped>
+.move-left {
     transform: translate(-50%, 0);
 }
 
 @media print {
-    .myDivToPrint {
+    .print-div {
         background-color: white;
         width: 100.1%;
         position: absolute;

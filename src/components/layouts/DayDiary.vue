@@ -1,6 +1,6 @@
 <template>
   <div
-    class="max-w-4xl relative left-1/2 print-div move-left bg-white p-24 lg:p-5 font-NotoJP"
+    class="max-w-4xl relative left-1/2 print-div move-left bg-white p-24 xl:p-5 font-NotoJP"
   >
     <p class="text-center font-bold text-2xl">工事（修理）実施報告事</p>
     <p class="text-right font-medium text-xl pt-5">ウッドリンク株式会社</p>
@@ -10,43 +10,43 @@
       この報告書と請求書と照合し、確認した上でお支払い致します。
     </p>
     <form class="pt-7">
-      <div class="grid gap-5 mb-6 grid-cols-6 lg:grid-cols-1">
-        <div class="grid w-80 lg:grid-cols-1 items-center justify-items-start">
+      <div class="grid gap-5 mb-6 grid-cols-6 xl:grid-cols-1">
+        <div class="grid w-80 xl:grid-cols-1 items-center justify-items-start">
           <label for="first_name" class="mb-2 text-xl font-medium text-gray-900"
             >実施業者名</label
           >
         </div>
-        <div class="col-span-2 lg:grid-cols-1">
+        <div class="col-span-2 xl:grid-cols-1">
           <input
             v-model="objData.head.company"
             type="text"
             id="first_name"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:border-blue-500 block w-full p-2.5"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:border-blue-500 block w-full p-2.5"
             required
           />
         </div>
-        <div class="grid pl-8 lg:grid-cols-1 items-center justify-items-start">
+        <div class="grid pl-8 xl:grid-cols-1 items-center justify-items-start">
           <label for="in_charge" class="mb-2 text-xl font-medium text-gray-900"
             >担当者</label
           >
         </div>
-        <div class="col-span-2 lg:grid-cols-1">
+        <div class="col-span-2 xl:grid-cols-1">
           <input
             v-model="objData.head.repairer"
             type="text"
             id="in_charge"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:border-blue-500 block w-full p-2.5"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:border-blue-500 block w-full p-2.5"
             required
           />
         </div>
       </div>
 
-      <!-- <div class="grid lg:grid-cols-1 items-center justify-items-start">
+      <!-- <div class="grid xl:grid-cols-1 items-center justify-items-start">
                 <label for="last_name" class="mb-2 text-xl font-medium text-gray-900">実施日</label>
             </div>
-            <div class="col-span-5 lg:grid-cols-1">
+            <div class="col-span-5 xl:grid-cols-1">
                 <input type="datetime-local" id="last_name" v-model="dateBeforeParse"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:border-blue-500 block w-full p-2.5"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:border-blue-500 block w-full p-2.5"
                     lang="ja-JP" required>
             </div> -->
 
@@ -73,7 +73,7 @@
             type="datetime-local"
             id="time-from"
             v-model="dateBeforeParse"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:border-blue-500 block w-full p-2.5"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:border-blue-500 block w-full p-2.5"
             lang="ja-JP"
             required
           />
@@ -83,23 +83,23 @@
             type="datetime-local"
             id="time-to"
             v-model="dateAfterParse"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:border-blue-500 block w-full p-2.5"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:border-blue-500 block w-full p-2.5"
             lang="ja-JP"
             required
           />
         </div>
       </div>
 
-      <div class="grid gap-5 mb-6 grid-cols-6 lg:grid-cols-1 mt-4">
-        <!-- <div class="grid lg:grid-cols-1 items-center justify-items-start">
+      <div class="grid gap-5 mb-6 grid-cols-6 xl:grid-cols-1 mt-4">
+        <!-- <div class="grid xl:grid-cols-1 items-center justify-items-start">
                     <label for="company" class="mb-2 text-xl font-medium text-gray-900">設備名称</label>
                 </div>
 
-                <div class="col-span-5 lg:grid-cols-1 mt-4">
+                <div class="col-span-5 xl:grid-cols-1 mt-4">
                     <div class="flex gap-5">
                         <div class="flex-1">
                             <select v-model="objData.body.process"
-                                class="select bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:border-blue-500 block w-full p-2.5">
+                                class="select bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:border-blue-500 block w-full p-2.5">
                                 <option disabled selected>工程?</option>
                                 <option class='text-base' v-for="(item, index) in process" :key="index">{{ item }}
                                 </option>
@@ -107,7 +107,7 @@
                         </div>
                         <div class="flex-1">
                             <select v-model="objData.body.machinePartName"
-                                class="select bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:border-blue-500 block w-full p-2.5">
+                                class="select bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:border-blue-500 block w-full p-2.5">
                                 <option disabled selected>設備名称?</option>
                                 <option class='text-base' v-for="(item, index) in facility" :key="index">{{ item }}
                                 </option>
@@ -115,7 +115,7 @@
                         </div>
                         <div class="flex-1">
                             <select
-                                class="select bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:border-blue-500 block w-full p-2.5">
+                                class="select bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:border-blue-500 block w-full p-2.5">
                                 <option disabled selected>工程?</option>
                                 <option class='text-base' v-for="(item, index) in process" :key="index">{{ item }}
                                 </option>
@@ -124,15 +124,15 @@
                     </div>
                 </div> -->
 
-        <div class="grid lg:grid-cols-1 items-center justify-items-start">
+        <div class="grid xl:grid-cols-1 items-center justify-items-start">
           <label for="phone" class="mb-2 text-xl font-medium text-gray-900"
             >工程</label
           >
         </div>
-        <div class="col-span-5 lg:grid-cols-1">
+        <div class="col-span-5 xl:grid-cols-1">
           <select
             v-model="objData.body.process"
-            class="select scroll-auto bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:border-blue-500 block w-full p-2.5"
+            class="select scroll-auto bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:border-blue-500 block w-full p-2.5"
           >
             <option
               class="text-base"
@@ -144,47 +144,47 @@
           </select>
         </div>
 
-        <div class="grid lg:grid-cols-1 items-center justify-items-start">
+        <div class="grid xl:grid-cols-1 items-center justify-items-start">
           <label for="phone" class="mb-2 text-xl font-medium text-gray-900"
             >設備名称</label
           >
         </div>
-        <div class="col-span-5 lg:grid-cols-1">
+        <div class="col-span-5 xl:grid-cols-1">
           <input
             v-model="objData.body.machinePartName"
             type="text"
             id="phone"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:border-blue-500 block w-full p-2.5"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:border-blue-500 block w-full p-2.5"
             required
           />
         </div>
 
-        <div class="grid lg:grid-cols-1 items-center justify-items-start">
+        <div class="grid xl:grid-cols-1 items-center justify-items-start">
           <label for="phone" class="mb-2 text-xl font-medium text-gray-900"
             >故障原因</label
           >
         </div>
-        <div class="col-span-5 lg:grid-cols-1">
+        <div class="col-span-5 xl:grid-cols-1">
           <input
             v-model="objData.body.reason"
             type="text"
             id="phone"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:border-blue-500 block w-full p-2.5"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:border-blue-500 block w-full p-2.5"
             required
           />
         </div>
 
-        <div class="grid lg:grid-cols-1 items-center justify-items-start">
+        <div class="grid xl:grid-cols-1 items-center justify-items-start">
           <label for="website" class="mb-2 text-xl font-medium text-gray-900"
             >交換部品</label
           >
         </div>
-        <div class="col-span-5 lg:grid-cols-1">
+        <div class="col-span-5 xl:grid-cols-1">
           <input
             v-model="objData.body.nameOfReplacedItem"
             type="text"
             id="website"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:border-blue-500 block w-full p-2.5"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:border-blue-500 block w-full p-2.5"
             required
           />
         </div>
@@ -218,7 +218,7 @@
             v-model="objData.body.total"
             type="number"
             id="gokei"
-            class="text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:border-blue-500 block w-full p-2.5"
+            class="text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:border-blue-500 block w-full p-2.5"
             required
           />
         </div>
@@ -227,7 +227,7 @@
             v-model="objData.body.laborFee"
             type="number"
             id="koriu"
-            class="text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:border-blue-500 block w-full p-2.5"
+            class="text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:border-blue-500 block w-full p-2.5"
             required
           />
         </div>
@@ -236,7 +236,7 @@
             v-model="objData.body.itemCost"
             type="number"
             id="zairiuhi"
-            class="text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:border-blue-500 block w-full p-2.5"
+            class="text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:border-blue-500 block w-full p-2.5"
             required
           />
         </div>
@@ -250,14 +250,14 @@
         <textarea
           v-model="objData.body.comment"
           id="seiko"
-          class="h-48 bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg focus:border-blue-500 block w-full p-2.5"
+          class="h-48 bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-xl focus:border-blue-500 block w-full p-2.5"
           required
         ></textarea>
       </div>
     </form>
     <button
       @click="log()"
-      class="text-white mt-4 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center"
+      class="text-white mt-4 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-xl text-sm w-full px-5 py-2.5 text-center"
     >
       保存
     </button>
@@ -266,7 +266,7 @@
   <input type="checkbox" id="my-modal" class="modal-toggle" />
   <div class="modal">
     <div class="modal-box max-w-xs">
-      <h3 class="font-bold text-lg text">保存しました。</h3>
+      <h3 class="font-bold text-xl text">保存しました。</h3>
       <p class="py-4">維持で入力する又は戻る</p>
       <div class="flex justify-between">
         <button class="flex btn">Button</button>
@@ -305,7 +305,7 @@
         class="btn btn-sm btn-circle absolute right-2 top-3"
         >✕</label
       >
-      <div class="alert alert-error shadow-lg">
+      <div class="alert alert-error shadow-xl">
         <div>
           <svg
             xmlns="http://www.w3.org/2000/svg"

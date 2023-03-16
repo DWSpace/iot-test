@@ -1,7 +1,38 @@
 <template>
-  <div>
-    <!-- <iframe src="https://www.appsheet.com/start/fcadc2e6-c123-425c-8e5b-8be42984a35f?refresh=1&wipe=1"
-            class="w-full h-screen" /> -->
+  <div class="card p-4">
+    <DataTable :value="products" showGridlines tableStyle="min-width: 50rem">
+      <Column field="code" header="Code"></Column>
+      <Column field="name" header="Name"></Column>
+      <Column field="category" header="Category"></Column>
+      <Column field="quantity" header="Quantity"></Column>
+    </DataTable>
   </div>
 </template>
-<script setup></script>
+<script>
+
+export default {
+  data() {
+    return {
+      products: [{
+        code: 1,
+        name: 'abc',
+        category: 'xyz',
+        quantity: 10},
+        {
+        code: 2,
+        name: 'con cặt',
+        category: 'cà chua',
+        quantity: 10},
+        {
+        code: 3,
+        name: 'a á ớ',
+        category: 'có cái rồn',
+        quantity: 10}
+        ]
+    };
+  },
+  mounted() {
+
+  },
+};
+</script>

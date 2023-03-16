@@ -1,9 +1,17 @@
 <template>
-  <div class="grid w-full grid-cols-2 gap-2">
-    <highcharts :options="chartOptions"></highcharts>
-    <highcharts :options="chartOptions"></highcharts>
-    <highcharts :options="chartOptions"></highcharts>
-    <highcharts :options="chartOptions"></highcharts>
+  <div class="grid w-full grid-cols-2 gap-2 p-8">
+    <Panel header="集塵機 1">
+      <highcharts :options="chartOptions"></highcharts>
+    </Panel>
+    <Panel header="集塵機 2">
+      <highcharts :options="chartOptions"></highcharts>
+    </Panel>
+    <Panel header="集塵機 3">
+      <highcharts :options="chartOptions"></highcharts>
+    </Panel>
+    <Panel header="集塵機 4">
+      <highcharts :options="chartOptions"></highcharts>
+    </Panel>
   </div>
 </template>
 
@@ -17,10 +25,9 @@ exportingInit(Highcharts);
 Exporting(Highcharts);
 Highcharts.setOptions({credits: false})
 export default {
-components: {
-  highcharts: Chart
+  components: {
+    highcharts: Chart
   },
-
   data() {
     return {
       chartOptions: {
@@ -45,7 +52,6 @@ components: {
           color: 'rgba(106,166,46,.9)',
           data: []
         }],
-        
       }
     }
   },

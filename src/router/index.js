@@ -14,7 +14,7 @@ const router = createRouter({
       name: "graph",
       component: () => import("../components/layouts/Graph.vue"),
       meta: {
-        title: "đồ thị iot",
+        title: "IOTグラフ | Woodlink",
       },
     },
     {
@@ -50,7 +50,6 @@ const router = createRouter({
         {
           path: ":city",
           name: "cityview",
-
           component: () => import("../components/weather/CityView.vue"),
         },
       ],

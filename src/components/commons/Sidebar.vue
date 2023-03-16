@@ -1,12 +1,11 @@
 <template>
   <aside :class="`${is_expanded && 'is-expanded'}`">
     <div class="logo">
-      <img src="../../assets/img/favicon-32x32.png" alt="logo">
+      <img src="../../assets/img/favicon-32x32.png" alt="logo" />
     </div>
     <div class="menu-toggle-wrap">
       <button class="menu-toggle" @click="ToggleMenu">
-        <span class="material-icons">keyboard_double_arrow_right
-        </span>
+        <span class="material-icons">keyboard_double_arrow_right </span>
       </button>
     </div>
     <h3>メニュー</h3>
@@ -19,32 +18,44 @@
         <span class="material-icons">flood</span>
         <span class="text" v-if="is_expanded">天気</span>
       </router-link>
-      <router-link class="button" active-class="active" :to='{ name: "general" }'>
+      <router-link
+        class="button"
+        active-class="active"
+        :to="{ name: 'general' }"
+      >
         <span class="material-icons">view_quilt</span>
         <span class="text" v-if="is_expanded">全般</span>
       </router-link>
-      <router-link class="button" active-class="active" :to='{ name: "graph" }'>
+      <router-link class="button" active-class="active" :to="{ name: 'graph' }">
         <span class="material-icons">analytics</span>
         <span class="text" v-if="is_expanded">グラフ</span>
       </router-link>
-      <router-link class="button" active-class="active" :to='{ name: "diary" }'>
+      <router-link class="button" active-class="active" :to="{ name: 'diary' }">
         <span class="material-icons">auto_stories</span>
-        <span class='text' v-if="is_expanded">日報</span>
+        <span class="text" v-if="is_expanded">日報</span>
       </router-link>
 
       <!-- Dropdown menu 1 -->
       <div @click="ToggleChildMenu(0)" class="button cursor-pointer">
         <span class="material-icons">foundation</span>
-        <span class='text' v-if="is_expanded">住宅資材事業部</span>
+        <span class="text" v-if="is_expanded">住宅資材事業部</span>
       </div>
 
       <Transition name="appear">
         <div v-if="is_expanded && is_clicked[0]" class="child-menu">
-          <router-link class="button h-10" active-class="active" :to='{ name: "diary" }'>
-            <span class='text'>製造部</span>
+          <router-link
+            class="button h-10"
+            active-class="active"
+            :to="{ name: 'diary' }"
+          >
+            <span class="text">製造部</span>
           </router-link>
-          <router-link class="button h-10" active-class="active" :to='{ name: "diary" }'>
-            <span class='text'>営業部</span>
+          <router-link
+            class="button h-10"
+            active-class="active"
+            :to="{ name: 'diary' }"
+          >
+            <span class="text">営業部</span>
           </router-link>
         </div>
       </Transition>
@@ -52,16 +63,24 @@
       <!-- Dropdown menu 2 -->
       <div @click="ToggleChildMenu(1)" class="button cursor-pointer">
         <span class="material-icons">forest</span>
-        <span class='text' v-if="is_expanded">製材事業部</span>
+        <span class="text" v-if="is_expanded">製材事業部</span>
       </div>
 
       <Transition name="appear">
         <div v-if="is_expanded && is_clicked[1]" class="child-menu">
-          <router-link class="button h-10" active-class="active" :to='{ name: "diary" }'>
-            <span class='text'>生産課</span>
+          <router-link
+            class="button h-10"
+            active-class="active"
+            :to="{ name: 'diary' }"
+          >
+            <span class="text">生産課</span>
           </router-link>
-          <router-link class="button h-10" active-class="active" :to='{ name: "diary" }'>
-            <span class='text'>生産管理課</span>
+          <router-link
+            class="button h-10"
+            active-class="active"
+            :to="{ name: 'diary' }"
+          >
+            <span class="text">生産管理課</span>
           </router-link>
         </div>
       </Transition>
@@ -70,17 +89,18 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-const is_expanded = ref(localStorage.getItem('is_expanded') === 'true');
+import { ref } from "vue";
+const is_expanded = ref(localStorage.getItem("is_expanded") === "true");
 const is_clicked = ref([]);
 const ToggleMenu = () => {
   is_expanded.value = !is_expanded.value;
-  localStorage.setItem('is_expanded', is_expanded.value)
-}
+  localStorage.setItem("is_expanded", is_expanded.value);
+};
 const ToggleChildMenu = (n) => {
-  is_clicked.value[n] ? is_clicked.value[n] = !is_clicked.value[n] :
-    is_clicked.value[n] = true;
-}
+  is_clicked.value[n]
+    ? (is_clicked.value[n] = !is_clicked.value[n])
+    : (is_clicked.value[n] = true);
+};
 </script>
 
 <style lang="scss" scoped>
@@ -92,8 +112,6 @@ aside {
   background-color: var(--dark);
   color: var(--light);
   transition: 0.2s ease-out;
-
-
 
   .logo {
     margin-bottom: 1rem;
@@ -169,18 +187,12 @@ aside {
           color: var(--primary);
         }
       }
-
     }
 
     .active {
       border-right: 5px solid var(--primary);
     }
-
   }
-
-
-
-
 
   &.is-expanded {
     width: var(--sidebar-width);

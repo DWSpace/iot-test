@@ -3,7 +3,7 @@
     <Suspense>
       <async-result></async-result>
       <template #fallback>
-        <AsyncCitySkeleton/>
+        <AsyncCitySkeleton />
       </template>
     </Suspense>
   </div>

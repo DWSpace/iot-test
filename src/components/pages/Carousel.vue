@@ -57,18 +57,18 @@ export default {
 
     //auto play
     const autoPlay = () => {
-      setInterval(()=>{
-        nextSlide()
-      }, timeoutDuration.value)
-    }
+      setInterval(() => {
+        nextSlide();
+      }, timeoutDuration.value);
+    };
 
     if (autoPlayEnable.value) {
-      autoPlay()
+      autoPlay();
     }
 
     const goToSlide = (index) => {
       currentSlide.value = index;
-    }
+    };
 
     onMounted(() => {
       getSlideCount.value = document.querySelectorAll(".slide").length;
@@ -78,7 +78,7 @@ export default {
       getSlideCount,
       nextSlide,
       prevSlide,
-      goToSlide
+      goToSlide,
     };
   },
 };
@@ -119,7 +119,7 @@ export default {
     background-color: grey;
     color: #fff;
   }
-} 
+}
 
 .pagination {
   position: absolute;
@@ -135,7 +135,7 @@ export default {
     width: 15px;
     height: 15px;
     border-radius: 50%;
-    background-color: #fff; 
+    background-color: #fff;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
   }
   .active {

@@ -19,12 +19,8 @@ export default {
     Slide,
   },
   setup(props) {
-    const imgPath = [
-      "bg1.jpg",
-      "bg2.jpg",
-      "bg3.jpg"
-    ];
-    return { imgPath }
+    const imgPath = ["bg1.jpg", "bg2.jpg", "bg3.jpg"];
+    return { imgPath };
   },
 };
 </script>

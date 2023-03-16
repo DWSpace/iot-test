@@ -10,21 +10,17 @@
         </RouterLink>
 
         <div class="flex gap-3 flex-1 justify-end">
-          <span class="
-              material-icons
-              text-xl
-              hover:text-weather-secondary
-              duration-150
-              cursor-pointer
-            " @click="toggleModal">
-            info </span>
-          <span class="
-              material-icons
-              text-xl
-              hover:text-weather-secondary
-              duration-150
-              cursor-pointer
-            " @click="addCity" v-if="route.query.preview">
+          <span
+            class="material-icons text-xl hover:text-weather-secondary duration-150 cursor-pointer"
+            @click="toggleModal"
+          >
+            info
+          </span>
+          <span
+            class="material-icons text-xl hover:text-weather-secondary duration-150 cursor-pointer"
+            @click="addCity"
+            v-if="route.query.preview"
+          >
             add
           </span>
         </div>
@@ -61,11 +57,11 @@
     </router-view>
   </div>
 </template>
-  
+
 <script setup>
 import { ref } from "vue";
-import { RouterLink } from 'vue-router'
-import { useRoute, useRouter } from 'vue-router'
+import { RouterLink } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import WeatherInfo from "../weather/WeatherInfo.vue";
 const modalActive = ref(null);
 
@@ -73,9 +69,11 @@ const route = useRoute();
 const router = useRouter();
 
 router.beforeEach((to, from, next) => {
-  document.title = `${to.params.city ? `${to.params.city} 天気予報 | Woodlink` : to.meta.title}`;
-  next()
-})
+  document.title = `${
+    to.params.city ? `${to.params.city} 天気予報 | Woodlink` : to.meta.title
+  }`;
+  next();
+});
 
 const toggleModal = () => {
   modalActive.value = !modalActive.value;
@@ -83,23 +81,20 @@ const toggleModal = () => {
 
 const savedCities = ref([]);
 const addCity = () => {
-  if (localStorage.getItem('savedCities')) {
-    savedCities.value = JSON.parse(localStorage.getItem('savedCities'))
+  if (localStorage.getItem("savedCities")) {
+    savedCities.value = JSON.parse(localStorage.getItem("savedCities"));
   }
 
   const locationObj = {
     city: route.params.city,
     coords: {
       lat: route.query.lat,
-      lon: route.query.lon
-    }
+      lon: route.query.lon,
+    },
   };
 
   savedCities.value.push(locationObj);
-  localStorage.setItem(
-    'savedCities',
-    JSON.stringify(savedCities.value)
-  )
+  localStorage.setItem("savedCities", JSON.stringify(savedCities.value));
 
   // Chỗ query này bắt buộc phải làm đúng như thế này thì nó mới thay thế
   // query trên chỗ url được
@@ -108,10 +103,9 @@ const addCity = () => {
   delete query.preview;
 
   router.replace({ query });
-
-}
+};
 </script>
-  
+
 <style>
 .page-enter-active,
 .page-leave-active {

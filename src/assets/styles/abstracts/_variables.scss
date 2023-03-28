@@ -1,0 +1,66 @@
+// background body
+$bg-light: #E6E7EC;
+$bg-dark: #06080A;
+$bg-fill-busd: #EDF0F4;
+
+$bg-price-up: rgba(65, 182, 113, 0.3);
+$list-bg-price-up: #2D9D5B #33AD65 #41B671 #4BC27C #5ACF8A #61CF8E #82E9AC #98F9C0 #C4FFDC #E4FFEF;
+
+$bg-price-down: rgba(201, 66, 59, 0.3);
+$list-bg-price-down: #C84F49 #CB5B55 #CE6862 #D1746E #D4807A #D78D87 #DA9993 #DDA6A0 #E0B3AD #E2BEB8;
+
+$bg-button-green: rgba(113, 217, 156, 0.3);
+$bg-button-green-hover: rgba(113, 217, 156, 0.5);
+$bg-item-hover: #75db9f29;
+
+$black: #000000;
+$black90: #1E1E1E;
+$black80: #383838;
+$black70: #606060;
+$black60: #8C8C8C;
+$black50: #B6B6B6;
+$black40: #CCCCCC;
+$black30: #DEDEDE;
+$black20: #F0F0F0;
+$black10: #FAFAFA;
+
+$dark1: #06080A;
+$dark2: #191919;
+$dark3: #232323;
+
+$white: #FFFFFF;
+
+$green: #35AB65;
+$green-dark: #1B673B;
+$green-light: #59EC96;
+$green10: #C6F1D8;
+$green90: #1B673B;
+
+$red: #C9423B;
+$red-dark: #932E29;
+$red-light: #FF645C;
+$red10: #FFD9D7;
+$red90: #932E29;
+
+$yellow: #F4B102;
+
+$purple: #B45CEA;
+$purple-light: #F7E9FF;
+$purple-dark: #3C2A47;
+
+$greyscale-500: #AAAAAA;
+$greyscale-black80: #5E5E5E;
+
+$text-active: #B45CEA;
+$main-font: 'Inter', sans-serif;
+
+$text-price-up: #35AB65;
+$text-price-down: #C9423B;
+
+$text-gray01: rgba(0, 0, 0, 0.6);
+$text-white01: rgba(255, 255, 255, 0.6);
+
+$gradient: linear-gradient(42.1deg, #B45CEA 17.16%, #FF9393 98.49%);
+$gradient-to-right: linear-gradient(to right, #B45CEA, #FF9393);
+$gradient-green: linear-gradient(180deg, #AEFFBE 0%, #33CBB0 100%);
+$gradient-pink: linear-gradient(180deg, #FFB1B1 0%, #F35F5F 100%);

@@ -5,10 +5,10 @@ import axios from "axios";
 import PrimeVue from "primevue/config";
 
 axios.defaults.baseURL =
-  "https://lnien0sjnj.execute-api.ap-northeast-1.amazonaws.com/v1/";
+  "https://lnien0sjnj.execute-api.ap-northeast-1.amazonaws.com/v1";
 
-// Tailwind
-import "./assets/styles/tailwind.css";
+// import Tailwind and manually code scss
+import "./assets/styles/index.scss";
 //theme
 import "primevue/resources/themes/lara-light-indigo/theme.css";
 //core

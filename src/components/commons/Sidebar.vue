@@ -158,6 +158,7 @@ aside {
     margin: 0 -1rem;
 
     .button {
+      width: 100%;
       display: flex;
       align-items: center;
       text-decoration: none;

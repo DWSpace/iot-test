@@ -32,7 +32,7 @@
         </div>
         <div class="col-span-2 xl:grid-cols-1">
           <input
-            v-model="objData.head.repairer"
+            v-model="objData.body.repairer"
             type="text"
             id="in_charge"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:border-blue-500 block w-full p-2.5"
@@ -269,8 +269,8 @@
       <h3 class="font-bold text-xl text">保存しました。</h3>
       <p class="py-4">維持で入力する又は戻る</p>
       <div class="flex justify-between">
-        <button class="flex btn">Button</button>
-        <label for="my-modal" class="btn">Yay!</label>
+        <button class="flex btn">戻る</button>
+        <label for="my-modal" class="btn">一回入力</label>
       </div>
     </div>
   </div>
@@ -345,11 +345,11 @@ const parseAfterDate = computed(() => {
 const objData = reactive({
   head: {
     company: "",
-    repairer: "",
     from: parseBeforeDate,
   },
   body: {
     to: parseAfterDate,
+    repairer: "",
     process: "",
     machinePartName: "",
     reason: "",
@@ -408,9 +408,6 @@ const log = async () => {
       .post("/add", objData)
       .then((response) => {
         console.log(response.data);
-        console.log(
-          dayjs.unix(response.data[0].Time).format("YYYY/MM/DD HH:mm")
-        );
         document.getElementById("my-modal2").checked = false;
         document.getElementById("my-modal").checked = true;
       })
@@ -426,9 +423,6 @@ const log = async () => {
 </script>
 
 <style lang="scss" scoped>
-// .p-component {
-//   width: 100%;
-// }
 .move-left {
   transform: translate(-50%, 0);
 }

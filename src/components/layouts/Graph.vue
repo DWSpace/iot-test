@@ -1,16 +1,10 @@
 <template>
-  <div class="grid w-full grid-cols-2 gap-2 p-8">
+  <div class="grid w-full grid-cols-2 gap-5 p-8">
     <Panel header="集塵機 1">
-      <highcharts :options="chartOptions"></highcharts>
+      <highcharts :options="chartOptionsArray[0]"></highcharts>
     </Panel>
-    <Panel header="集塵機 2">
-      <highcharts :options="chartOptions"></highcharts>
-    </Panel>
-    <Panel header="集塵機 3">
-      <highcharts :options="chartOptions"></highcharts>
-    </Panel>
-    <Panel header="集塵機 4">
-      <highcharts :options="chartOptions"></highcharts>
+    <Panel header="集塵機 1">
+      <!-- <highcharts :options="chartOptions[1]"></highcharts> -->
     </Panel>
   </div>
 </template>
@@ -20,9 +14,12 @@ import {Chart} from 'highcharts-vue';
 import Highcharts from "highcharts";
 import Exporting from "highcharts/modules/export-data";
 import exportingInit from "highcharts/modules/exporting";
+// import Sankey from 'highcharts/modules/sankey'
 import axios from 'axios';
 exportingInit(Highcharts);
 Exporting(Highcharts);
+// Sankey(Highcharts)
+
 Highcharts.setOptions({credits: false})
 export default {
   components: {
@@ -52,7 +49,9 @@ export default {
           color: 'rgba(106,166,46,.9)',
           data: []
         }],
-      }
+      },
+      // chartOptionsArray: {dust1:{}},
+      chartOptionsArray: [[]],
     }
   },
   async mounted(){
@@ -70,6 +69,11 @@ export default {
       const yData = formatArr.map( x => parseFloat(x[1]))
       this.chartOptions.xAxis.categories = xData.splice(1)
       this.chartOptions.series[0].data = yData.splice(1)
+      // this.chartOptionsArray.dust1 = Object.assign({}, this.chartOptions);
+      this.chartOptionsArray.splice(0,1,this.chartOptions);
+      // this.chartOptionsArray[0] = JSON.parse(JSON.stringify(this.chartOptions));
+      // this.chartOptionsArray.splice(0,1,this.chartOptions);
+
     }
   }
 }

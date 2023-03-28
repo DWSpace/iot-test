@@ -1,0 +1,181 @@
+@import "variables";
+
+@mixin transition-theme() {
+  transition: all 0.3s ease;
+  transition-property: background, color;
+}
+
+@mixin price-animation($prop) {
+  transition: $prop 0.25s cubic-bezier(.01,.84,.28,.98);
+}
+
+@mixin price-style() {
+  @include price-animation(color);
+  &.up {
+    color: $text-price-up;
+  }
+  &.down {
+    color: $text-price-down;
+  }
+}
+
+@mixin price-style-outline() {
+  @include price-animation(all);
+  &.up {
+    color: $text-price-up;
+    border-color: $text-price-up;
+  }
+  &.down {
+    color: $text-price-down;
+    border-color: $text-price-down;
+  }
+}
+
+@mixin bg-price-style() {
+  background: transparent;
+  @include price-animation(background);
+  &.up {
+    background: $bg-price-up;
+  }
+  &.down {
+    background: $bg-price-down;
+  }
+}
+
+@mixin bg-price-indicator() {
+  background: transparent;
+  @include price-animation(background);
+  &.up {
+    background: $text-price-up;
+    border-color: $text-price-up;
+  }
+  &.down {
+    background: $text-price-down;
+    border-color: $text-price-down;
+  }
+}
+
+@mixin bg-price-change() {
+  background: transparent;
+  @include price-animation(background);
+  &.up {
+    > div {
+      @include set-list-ten-price($list-bg-price-up);
+    }
+  }
+  &.down {
+    > div {
+      @include set-list-ten-price($list-bg-price-down);
+    }
+  }
+}
+
+@mixin home-gradient {
+  &:before {
+    content: '';
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: var(--bg-home-gradient);
+    pointer-events: none;
+  }
+}
+
+@mixin set-list-ten-price($list) {
+  @for $i from 1 through 10 {
+    &:nth-child(#{$i}) {
+      background: nth($list, $i);
+    }
+  }
+}
+
+@mixin trim-text {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@mixin trim-text-row($row) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $row;
+  line-clamp: $row;
+}
+
+@mixin set-bg-effect($bg) {
+  &:hover, &:active, &:focus {
+    background: $bg;
+  }
+}
+
+@mixin set-color-effect($color) {
+  &:hover, &:active, &:focus {
+    color: $color;
+  }
+}
+
+@mixin set-border-effect($color) {
+  &:hover, &:active, &:focus {
+    border-color: $color;
+  }
+}
+
+@mixin text-active() {
+  transition: color 0.3s ease;
+  color: $text-active;
+}
+
+@mixin set-text-gradient-effect() {
+  &:hover, &:active, &:focus {
+    @include text-gradient();
+  }
+}
+
+@mixin text-gradient() {
+  background: $gradient;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@mixin font-and-height($font, $height) {
+  font-size: $font;
+  line-height: $height;
+}
+
+@mixin blur-image() {
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(180, 93, 234, 0.3);
+    -webkit-backdrop-filter: blur(0.5px);
+    backdrop-filter: blur(0.5px);
+    z-index: 2;
+  }
+}
+
+@mixin icon-alarm-color($color) {
+  svg path {
+    fill: $color;
+  }
+}
+
+@mixin placeholder-color($color) {
+  &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: $color;
+    opacity: 1; /* Firefox */
+  }
+  &:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: $color;
+  }
+  &::-ms-input-placeholder { /* Microsoft Edge */
+    color: $color;
+  }
+}

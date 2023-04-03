@@ -153,5 +153,3 @@ const removeCity = () => {
   router.push("/weather");
 };
 </script>
-
-<style></style>

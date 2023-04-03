@@ -87,6 +87,7 @@ declare module '@vue/runtime-core' {
     JumpToPageInput: typeof import('./../node_modules/primevue/paginator/JumpToPageInput.vue')['default']
     Knob: typeof import('./../node_modules/primevue/knob/Knob.vue')['default']
     LastPageLink: typeof import('./../node_modules/primevue/paginator/LastPageLink.vue')['default']
+    LineChart: typeof import('./components/iot-chart/LineChart.vue')['default']
     Listbox: typeof import('./../node_modules/primevue/listbox/Listbox.vue')['default']
     MegaMenu: typeof import('./../node_modules/primevue/megamenu/MegaMenu.vue')['default']
     MegaMenuSub: typeof import('./../node_modules/primevue/megamenu/MegaMenuSub.vue')['default']

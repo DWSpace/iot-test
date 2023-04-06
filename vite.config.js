@@ -12,6 +12,7 @@ export default defineConfig({
       include: [/\.vue$/, /\.vue\?vue/],
       dts: "src/components.d.ts",
       dirs: ["src/**/*", "node_modules/primevue/**/*"],
+      // dirs: ["node_modules/primevue/**/*"],
     }),
   ],
   server: {

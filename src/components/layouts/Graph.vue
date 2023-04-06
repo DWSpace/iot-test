@@ -1,25 +1,26 @@
 <template>
+  
   <div class="grid w-full grid-cols-2 gap-5 p-8">
     <Panel header="集塵機 4">
-      <LineChart></LineChart>
+      <LineChart name="dust4"></LineChart>
     </Panel>
     <Panel header="集塵機 5">
-      <LineChart></LineChart>
+      <LineChart name="dust5"></LineChart>
     </Panel>
     <Panel header="集塵機 7">
-      <LineChart></LineChart>
+      <LineChart name="dust7"></LineChart>
     </Panel>
     <Panel header="集塵機 8">
-      <LineChart></LineChart>
+      <LineChart name="dust8"></LineChart>
     </Panel>
     <Panel header="集塵機 9">
-      <LineChart></LineChart>
+      <LineChart name="dust9"></LineChart>
     </Panel>
   </div>
 </template>
 
-<script>
-import LineChart from '../iot-chart/LineChart.vue';
+<script setup>
+
 
 </script>
 

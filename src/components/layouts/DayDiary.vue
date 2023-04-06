@@ -161,7 +161,22 @@
 
         <div class="grid xl:grid-cols-1 items-center justify-items-start">
           <label for="phone" class="mb-2 text-xl font-medium text-gray-900"
-            >故障原因</label
+            >不具合現在</label
+          >
+        </div>
+        <div class="col-span-5 xl:grid-cols-1">
+          <input
+            v-model="objData.body.reason"
+            type="text"
+            id="phone"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:border-blue-500 block w-full p-2.5"
+            required
+          />
+        </div>
+
+        <div class="grid xl:grid-cols-1 items-center justify-items-start">
+          <label for="phone" class="mb-2 text-xl font-medium text-gray-900"
+            >不具合原因</label
           >
         </div>
         <div class="col-span-5 xl:grid-cols-1">

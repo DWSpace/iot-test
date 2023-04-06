@@ -1,6 +1,7 @@
 <script setup>
 import { RouterView } from "vue-router";
 import Sidebar from "./components/commons/Sidebar.vue";
+import Toast from "primevue/toast";
 </script>
 
 <template>
@@ -11,7 +12,7 @@ import Sidebar from "./components/commons/Sidebar.vue";
     <div id="right">
       <RouterView />
     </div>
-
+    <Toast />
     <!-- <Footer /> -->
   </div>
 </template>

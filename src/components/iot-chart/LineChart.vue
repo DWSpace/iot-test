@@ -21,6 +21,18 @@ Highcharts.setOptions({
     zoomType: 'x',
     animation: true
   }, 
+  lang: {
+    downloadCSV: 'CSV ダウンロード',
+    downloadJPEG: 'JPG イメージ ダウンロード',
+    downloadPDF: 'PDF ダウンロード',
+    downloadPNG: 'PNG イメージ ダウンロード', 
+    downloadSVG: 'SVG ダウンロード', 
+    downloadXLS: 'XLS ダウンロード',
+    printChart: 'グラフ印刷',
+    viewFullscreen: '全画面表示',
+    viewData: 'データ テーブルを表示',
+    hideData: 'データ テーブルを非表示'
+  },
   credits: false
 })
 export default {

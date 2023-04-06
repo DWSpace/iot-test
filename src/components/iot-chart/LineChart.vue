@@ -26,7 +26,8 @@ Highcharts.setOptions({
 export default {
   props: {
     name: String,
-    date: String
+    date: String,
+    maxCurrent: Number
   },
   components: {
     highcharts: Chart,
@@ -44,7 +45,20 @@ export default {
             title: {text:'cac'},
             min: 0,
             max: 80,
-            tickInterval: 5
+            tickInterval: 5,
+            plotLines : [{
+              color: 'red',
+              dashStyle: 'dash',
+              width: 2,
+              label: {
+                text: '最高電流',
+                style: {
+                    fontWeight: 'bold',
+                    fontSize: '1.2em'
+                }
+              },
+              value: props.maxCurrent                              
+            }]                        
         },      
         series: [{
           name:'lon',
@@ -79,18 +93,5 @@ export default {
 </script>
 
 <style>
-/* input[type="date"] {
-  background-color: #0080ff;
-  padding: 15px;
-  position: absolute;
-  transform: translate(-50%, -50%);
-  top: 10%;
-  left: 50%;
-  font-family: "Roboto Mono", monospace;
-  color: #ffffff;
-  font-size: 18px;
-  border: none;
-  outline: none;
-  border-radius: 5px;
-} */
+
 </style>

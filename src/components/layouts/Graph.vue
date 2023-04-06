@@ -5,30 +5,26 @@
       <Calendar v-model="selectedDate" showIcon />
     </div>
     <div class="grid grid-cols-2 gap-5 p-8">
-      <Panel header="集塵機 4">
-        <LineChart name="dust4" :date="parseDate"></LineChart>
-      </Panel>
-      <Panel header="集塵機 5">
-        <LineChart name="dust5" :date="parseDate"></LineChart>
-      </Panel>
-      <Panel header="集塵機 7">
-        <LineChart name="dust7" :date="parseDate"></LineChart>
-      </Panel>
-      <Panel header="集塵機 8">
-        <LineChart name="dust8" :date="parseDate"></LineChart>
-      </Panel>
-      <Panel header="集塵機 9">
-        <LineChart name="dust9" :date="parseDate"></LineChart>
+      <Panel v-for="(item, index) in listMachine" :key="index" 
+        :header="item[0]">
+        <LineChart :name="item[1]" :date="parseDate" :maxCurrent="item[2]"></LineChart>
       </Panel>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, watch, computed } from 'vue';
+import { ref, computed, reactive } from 'vue';
 import dayjs from 'dayjs';
 
 const selectedDate = ref(new Date())
+const listMachine = reactive([
+  ['集塵機 4','dust4', 51],
+  ['集塵機 5', 'dust5', 21],
+  ['集塵機 7', 'dust7', 42],
+  ['集塵機 8', 'dust8', 21],
+  ['集塵機 9', 'dust9', 21]
+])
 
 const parseDate = computed(() => {
   return dayjs(selectedDate.value).format('YYYY-MM-DD');
@@ -36,7 +32,7 @@ const parseDate = computed(() => {
 
 </script>
 
-<style>
+<style lang="scss" scoped>
 /* input[type="date"] {
   background-color: #0080ff;
   padding: 15px;

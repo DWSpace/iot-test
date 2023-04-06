@@ -11,7 +11,7 @@ import Exporting from "highcharts/modules/export-data";
 import exportingInit from "highcharts/modules/exporting";
 import axios from 'axios';
 import { useToast } from "primevue/usetoast";
-import { reactive } from 'vue';
+import { reactive, watch } from 'vue';
 
 exportingInit(Highcharts);
 Exporting(Highcharts);
@@ -26,6 +26,7 @@ Highcharts.setOptions({
 export default {
   props: {
     name: String,
+    date: String
   },
   components: {
     highcharts: Chart,
@@ -53,7 +54,7 @@ export default {
       })
 
     const fetchCSV = async () => {
-      await axios.get(`https://dust-bucket-1.s3.ap-northeast-1.amazonaws.com/${props.name}-2023-03-30.csv`)
+      await axios.get(`https://dust-bucket-1.s3.ap-northeast-1.amazonaws.com/${props.name}-${props.date}.csv`)
       .then((response) => parseCSV(response.data))
       .catch ((err) => {
         toast.add({ severity: 'error', summary: 'エラー', detail: `集塵機${props.name.replace(/[^0-9]/g, '')}のデータがありません。`, life: 3000 });
@@ -68,8 +69,9 @@ export default {
       chartOptions.xAxis.categories = xData.splice(1)
       chartOptions.series[0].data = yData.splice(1)
     }
-    
     fetchCSV()
+
+    watch(() => props.date, () => fetchCSV())
 
     return { chartOptions, fetchCSV }
   }

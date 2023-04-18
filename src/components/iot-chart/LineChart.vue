@@ -54,7 +54,7 @@ export default {
           categories: []        
         },
         yAxis: {
-            title: {text:'cac'},
+            title: {text:'電流値'},
             min: 0,
             max: 80,
             tickInterval: 5,
@@ -73,7 +73,7 @@ export default {
             }]                        
         },      
         series: [{
-          name:'lon',
+          name:'時間',
           color: 'rgba(106,166,46,.9)',
           data: []
         }],

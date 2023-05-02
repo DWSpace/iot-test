@@ -54,6 +54,11 @@ const router = createRouter({
         },
       ],
     },
+    {
+      path: "/chuadung",
+      name: "chuadung",
+      component: () => import("../components/layouts/ChuaSuDung.vue"),
+    },
   ],
 });
 

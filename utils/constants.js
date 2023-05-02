@@ -165,3 +165,189 @@ export const FORM_DATA = {
     ]
   }
 };
+
+export const MENU = [
+  {
+      label: '営業部',
+      items: [                
+          {
+              label: '営業課',
+              // icon: 'pi pi-fw pi-trash'
+          },
+          {
+              label: '設計課',
+              // icon: 'pi pi-fw pi-external-link'
+          }
+      ]
+  },
+  {
+      label: '企画開発部',
+      // icon: 'pi pi-fw pi-pencil',
+      // items: [
+      //     {
+      //         label: 'Left',
+      //         icon: 'pi pi-fw pi-align-left'
+      //     },
+      //     {
+      //         label: 'Right',
+      //         icon: 'pi pi-fw pi-align-right'
+      //     },
+      //     {
+      //         label: 'Center',
+      //         icon: 'pi pi-fw pi-align-center'
+      //     },
+      //     {
+      //         label: 'Justify',
+      //         icon: 'pi pi-fw pi-align-justify'
+      //     }
+      // ]
+  },    
+  {
+      label: '製造部',
+      // icon: 'pi pi-fw pi-pencil',
+      items: [
+          {
+              label: '製造部共通',
+              // icon: 'pi pi-fw pi-align-left'
+          },
+          {
+              label: '生産管理課',
+              // icon: 'pi pi-fw pi-align-right'
+              to: '/diary'
+          },
+          {
+              label: '生産課',
+              // icon: 'pi pi-fw pi-align-center'
+          }
+      ]
+  },    
+];
+
+export const HOUSING_MATERIAL_DIVISION = [
+  {
+      label: '共通',
+      items: [                
+          {
+              label: '工事(修理)実績報告書',
+              // icon: 'pi pi-fw pi-trash'
+              items: [                
+                {
+                    label: '新規入力',
+                    // icon: 'pi pi-fw pi-trash'
+                    to: '/diary'
+                },
+                {
+                    label: '検索・修正・印刷',
+                    // icon: 'pi pi-fw pi-trash'
+                    to: '/general'
+                },
+                {
+                    label: '集計',
+                    // icon: 'pi pi-fw pi-trash'
+                },
+                {
+                    label: 'トラブルシューティング',
+                    // icon: 'pi pi-fw pi-trash'
+                },
+              ]
+          },
+          {
+              label: '集塵機グラフ',
+              // icon: 'pi pi-fw pi-external-link'
+              to: '/graph'
+          }
+      ]
+  },
+  {
+      label: '営業部',      // items: [                
+      //     {
+      //         label: '営業課',
+      //         // icon: 'pi pi-fw pi-trash'
+      //     },
+      //     {
+      //         label: '設計課',
+      //         // icon: 'pi pi-fw pi-external-link'
+      //     }
+      // ]
+  },
+  {
+      label: '製造部',
+      // icon: 'pi pi-fw pi-pencil',
+      items: [
+          {
+              label: '共通',
+              // icon: 'pi pi-fw pi-align-left'
+          },
+          {
+              label: '生産管理課',
+              // icon: 'pi pi-fw pi-align-right'
+          },
+          {
+              label: '横架材工程',
+              // icon: 'pi pi-fw pi-align-center'
+          },
+          {
+              label: '柱材工程',
+              // icon: 'pi pi-fw pi-align-justify'
+          },
+          {
+              label: '内装・モルダー工程',
+              // icon: 'pi pi-fw pi-align-justify'
+          },
+          {
+              label: '羽柄工程',
+              // icon: 'pi pi-fw pi-align-justify'
+          },
+          {
+              label: '合板工程',
+              // icon: 'pi pi-fw pi-align-justify'
+          },
+          {
+              label: '断熱材工程',
+              // icon: 'pi pi-fw pi-align-justify'
+          },
+          {
+              label: 'プレウォール工程',
+              // icon: 'pi pi-fw pi-align-justify'
+          },
+      ]
+  },    
+  {
+      label: '商品部',
+      // icon: 'pi pi-fw pi-pencil',
+      // items: [
+      //     {
+      //         label: '製造部共通',
+      //         // icon: 'pi pi-fw pi-align-left'
+      //     },
+      //     {
+      //         label: '生産管理課',
+      //         // icon: 'pi pi-fw pi-align-right'
+      //         to: '/diary'
+      //     },
+      //     {
+      //         label: '生産課',
+      //         // icon: 'pi pi-fw pi-align-center'
+      //     }
+      // ]
+  },    
+  {
+      label: '企画開発部',
+      // icon: 'pi pi-fw pi-pencil',
+      // items: [
+      //     {
+      //         label: '製造部共通',
+      //         // icon: 'pi pi-fw pi-align-left'
+      //     },
+      //     {
+      //         label: '生産管理課',
+      //         // icon: 'pi pi-fw pi-align-right'
+      //         to: '/diary'
+      //     },
+      //     {
+      //         label: '生産課',
+      //         // icon: 'pi pi-fw pi-align-center'
+      //     }
+      // ]
+  },    
+];

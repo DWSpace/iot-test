@@ -13,8 +13,8 @@
       <tbody>
         <!-- row 1 -->
         <tr style="text-align: center;">
-          <td>部長</td>
-          <td>ウッドリンク担当</td>
+          <td style="font-weight: 600;">部長</td>
+          <td style="font-weight: 600;">ウッドリンク担当</td>
         </tr>
         <tr>
           <td style="width: 5rem; height: 3rem;"></td>
@@ -30,7 +30,7 @@
         <tr>
           <th>実施業者名</th>
           <td style="width: 15rem;">{{ tableData.company }}</td>
-          <td style="width: 5rem;">担当者</td>
+          <td style="width: 5rem; font-weight: 600;">担当者</td>
           <td>{{ tableData.repairer }}</td>
         </tr>
       </tbody>
@@ -41,7 +41,7 @@
         <!-- row 1 -->
         <tr>
           <th>実施日</th>
-          <td>{{ fromTime }} ~ {{ toTime }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;備考: {{ tableData.isFinish ? "完了" : "継続" }}</td>
+          <td>{{ fromTime }} ~ {{ toTime }}&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: 600;">備考:</span> {{ tableData.isFinish ? "完了" : "継続" }}</td>
         </tr>
         <!-- row 2 -->
         <tr>
@@ -59,11 +59,15 @@
         </tr>
         <tr>
           <th>不具合現象</th>
-          <td>{{ tableData.phenomena }}</td>
+          <td style="white-space: normal;">
+            {{ tableData.phenomena }}
+          </td>
         </tr>
         <tr>
           <th>不具合原因</th>
-          <td>{{ tableData.reason }}</td>
+          <td style="white-space: normal;">
+            {{ tableData.reason }}
+          </td>
         </tr>
         <tr>
           <th>使用部品</th>
@@ -77,9 +81,9 @@
         <!-- row 1 -->
         <tr>
           <th rowspan="2" style="text-align: left;">工事費</th>
-          <td>合計</td>
-          <td>工料</td>
-          <td>材料費</td>
+          <td style="font-weight: 600;">合計</td>
+          <td style="font-weight: 600;">工料</td>
+          <td style="font-weight: 600;">材料費</td>
         </tr>
         <!-- row 2 -->
         <tr style="height: 2rem;">
@@ -95,7 +99,9 @@
         <!-- row 1 -->
         <tr style="height: 10rem;">
           <th>対処</th>
-          <td>{{ tableData.comment }}</td>
+          <td style="white-space: normal;">
+            {{ tableData.comment }}
+          </td>
         </tr>
       </tbody>
     </table>
@@ -125,6 +131,7 @@ const toTime = computed (() => {
   display: table;
   table, th, td {
     border: 1px solid;
+    background-color: transparent;
   }
   table {
     border-collapse: collapse;
@@ -144,7 +151,6 @@ const toTime = computed (() => {
   width: 9rem;
 }
 .table :where(th, td) {
-  white-space: nowrap;
   padding: 0.5rem/* 16px */;
   vertical-align: middle;
 }
@@ -158,7 +164,7 @@ const toTime = computed (() => {
   --tw-bg-opacity: 1;
   // font-size: 12px !important/* 12px */;
   line-height: 20px/* 16px */;
-  font-weight: 500;
+  font-weight: 400;
 }
 .move-left {
   transform: translate(-50%, 0);

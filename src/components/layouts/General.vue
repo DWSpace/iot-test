@@ -1,5 +1,5 @@
 <template>
-  <div class="py-8">
+  <div class="general-input py-8">
   <div class="datable" style="padding-top: 0;">
     <div class="grid grid-cols-[70%_30%] md:grid-cols-1 datable__searchbox">
       <div>
@@ -25,17 +25,26 @@
   </div>
 
   <div class="card primevue-format" style="padding: 0;">
-        <DataTable v-model:filters="filters" :value="getData_xoabot" paginator :rows="10" dataKey="id" filterDisplay="row" :loading="loading"
-          showGridlines tableStyle="min-width: 80%" style="padding: 0 5%;"> 
-            <template #empty> 見つかりませんでした。</template>
+        <DataTable 
+            v-model:filters="filters" 
+            :value="getData-x" 
+            paginator 
+            :rows="10" 
+            dataKey="id" 
+            filterDisplay="row"
+            rowHover 
+            :loading="loading"
+            showGridlines 
+            style="padding: 0 5%;" 
+            @row-click="testRowClick"> 
+            <template #empty> データを見つかりませんでした。</template>
             <template #loading>
                 <div class="text-2xl bold text-white">
-                    データのロード中。 お待ちください。
+                    データロード中。 お待ちください。
                 </div>
-                  
             </template>
 
-            <Column field="company" header="会社" style="min-width: 8rem" :showFilterMenu="false">
+            <Column field="company" header="会社" style="min-width: 8.5rem;" :showFilterMenu="false">
                 <template #body="{ data }">
                     {{ data.company }}
                 </template>
@@ -44,7 +53,7 @@
                 </template>
             </Column>
 
-            <Column field="repairer" header="担当者" style="min-width: 8rem" :showFilterMenu="false">
+            <Column field="repairer" header="担当者" style="min-width: 8rem;" :showFilterMenu="false">
                 <template #body="{ data }">
                     {{ data.repairer }}
                 </template>
@@ -53,17 +62,16 @@
                 </template>
             </Column>
 
-            <Column field="from" header="開始" style="min-width: 8rem" :showFilterMenu="false">
+            <Column field="from" header="開始" style="min-width: 8rem;" :showFilterMenu="false">
                 <template #body="{ data }">
                     {{ dayjs(data.from*1000).format("YYYY/MM/DD HH:mm") }}
                 </template>
                 <template #filter="{ filterModel, filterCallback }">
-                    <!-- <InputText v-model="filterModel.value" type="date" @input="handleDateFilter(filterModel, filterCallback)" class="p-column-filter"/> -->
                     <Calendar v-model="startTime" @date-select="handleDateFilter(filterModel, filterCallback)" placeholder="年/月/日" class="p-column-filter"/>
                 </template>
             </Column>
 
-            <Column field="to" header="完了" style="min-width: 8rem" :showFilterMenu="false">
+            <Column field="to" header="完了" style="min-width: 8rem;" :showFilterMenu="false">
                 <template #body="{ data }">
                     {{ dayjs(data.to*1000).format("YYYY/MM/DD HH:mm") }}
                 </template>
@@ -72,7 +80,7 @@
                 </template>
             </Column>
 
-            <Column field="mainProcess" header="グループ" style="min-width: 8rem" :showFilterMenu="false">
+            <Column field="mainProcess" header="グループ" style="min-width: 8rem;" :showFilterMenu="false">
                 <template #body="{ data }">
                     {{ data.mainProcess }}
                 </template>
@@ -81,17 +89,16 @@
                 </template>
             </Column>
 
-            <Column field="subProcess" header="工程" style="min-width: 8rem" :showFilterMenu="false">
+            <Column field="subProcess" header="工程" style="min-width: 8rem;" :showFilterMenu="false">
                 <template #body="{ data }">
                     {{ data.subProcess }}
                 </template>
                 <template #filter="{ filterModel, filterCallback }">
-                    <!-- <InputText v-model="filterModel.value" type="text" @input="filterCallback()" class="p-column-filter"/> -->
                     <Dropdown v-model="subProcess" :options="subProcessOption" @change="handleSubProcessFilter(filterModel, filterCallback)" />
                 </template>
             </Column>
 
-            <Column field="specificProcess" header="設備名称" style="min-width: 8rem" :showFilterMenu="false">
+            <Column field="specificProcess" header="設備名称" style="min-width: 8rem;" :showFilterMenu="false">
                 <template #body="{ data }">
                     {{ data.specificProcess }}
                 </template>
@@ -100,25 +107,29 @@
                 </template>
             </Column>
 
-            <Column field="phenomena" header="不具合現象" style="min-width: 8rem" :showFilterMenu="false">
+            <Column field="phenomena" header="不具合現象" style="min-width: 8rem;" :showFilterMenu="false">
                 <template #body="{ data }">
-                    {{ data.phenomena }}
+                    <div class="primevue-format__wrap">
+                        {{ data.phenomena }}
+                    </div>
                 </template>
                 <template #filter="{ filterModel, filterCallback }">
                     <InputText v-model="filterModel.value" type="text" @input="filterCallback()" class="p-column-filter"/>
                 </template>
             </Column>
 
-            <Column field="reason" header="原因" style="min-width: 8rem" :showFilterMenu="false">
+            <Column field="reason" header="原因" style="min-width: 8rem;" :showFilterMenu="false">
                 <template #body="{ data }">
-                    {{ data.reason }}
+                    <div class="primevue-format__wrap">
+                        {{ data.reason }}
+                    </div>
                 </template>
                 <template #filter="{ filterModel, filterCallback }">
                     <InputText v-model="filterModel.value" type="text" @input="filterCallback()" class="p-column-filter"/>
                 </template>
             </Column>
 
-            <Column field="nameOfReplacedItem" header="使用部品" style="min-width: 8rem" :showFilterMenu="false">
+            <Column field="nameOfReplacedItem" header="使用部品" style="min-width: 8rem;" :showFilterMenu="false">
                 <template #body="{ data }">
                     {{ data.nameOfReplacedItem }}
                 </template>
@@ -127,7 +138,7 @@
                 </template>
             </Column>
             
-            <Column field="total" header="合計" style="min-width: 6rem" :showFilterMenu="false">
+            <Column field="total" header="合計" style="min-width: 6rem;" :showFilterMenu="false">
                 <template #body="{ data }">
                     {{ data.total }}
                 </template>
@@ -136,7 +147,7 @@
                 </template>
             </Column>
 
-            <Column field="laborFee" header="材料費" style="min-width: 6rem" :showFilterMenu="false">
+            <Column field="laborFee" header="材料費" style="min-width: 6rem;" :showFilterMenu="false">
                 <template #body="{ data }">
                     {{ data.laborFee }}
                 </template>
@@ -145,7 +156,7 @@
                 </template>
             </Column>
 
-            <Column field="itemCost" header="工料" style="min-width: 6rem" :showFilterMenu="false">
+            <Column field="itemCost" header="工料" style="min-width: 6rem;" :showFilterMenu="false">
                 <template #body="{ data }">
                     {{ data.itemCost }}
                 </template>
@@ -154,9 +165,11 @@
                 </template>
             </Column>
 
-            <Column field="comment" header="施工内容" style="min-width: 8rem" :showFilterMenu="false">
+            <Column field="comment" header="施工内容" style="min-width: 8rem;" :showFilterMenu="false">
                 <template #body="{ data }">
-                    {{ data.comment }}
+                    <div class="primevue-format__wrap">
+                        {{ data.comment }}
+                    </div>
                 </template>
                 <template #filter="{ filterModel, filterCallback }">
                     <InputText v-model="filterModel.value" title="adsad" type="text" @input="filterCallback()" class="p-column-filter"/>
@@ -165,6 +178,15 @@
         </DataTable>
     </div>
 </div>
+<Dialog  
+    v-model:visible="visible" 
+    modal 
+    :header="dialogHeader" 
+    :draggable="false"
+    :style="{ width: dialogWidth}"
+    :contentStyle="{padding: '5rem'}">
+    <PrintTable :tableData="dialogData"/>
+</Dialog>
 </template>
 
 <script setup>
@@ -172,6 +194,7 @@ import { ref, computed, inject } from 'vue';
 import { FilterMatchMode } from 'primevue/api';
 import dayjs from 'dayjs';
 import { FORM_DATA } from '~/utils/constants.js'
+import { useToast } from "primevue/usetoast";
 
 const $axios = inject('axios')
 const filters = ref({
@@ -191,7 +214,7 @@ const filters = ref({
     comment: { value: null, matchMode: FilterMatchMode.CONTAINS }
 });
 
-
+// define variables
 const loading = ref(false);
 const startTime = ref();
 const endTime = ref();
@@ -207,6 +230,7 @@ const subProcessOption = computed(() => {
    return Object.keys(FORM_DATA[mainProcess.value])
 })
 
+// handle filter on table
 const handleMainProcessFilter = (filterModel, filterCallback) => {
     filterModel.value = mainProcess.value;
     filterCallback();
@@ -239,17 +263,19 @@ const getSeverity = (status) => {
     }
 }
 
+// fetch data for table from aws
 const getData = ref();
+const toast = useToast();
 const fetchDataTable = async () => {
     loading.value = true;
     await $axios.get('/get')
         .then((response) => {
-            // getData.value = response.data;
-            // loading.value = false;
-            console.log(response.data)
+            getData.value = response.data;
+            loading.value = false;
+            // console.log(response.data)
     })
         .catch ((err) => {
-            // toast.add({ severity: 'error', summary: 'エラー', detail: 'fuck', life: 3000 });
+            toast.add({ severity: 'error', summary: 'エラー', detail: 'サーバーからデータを取得できません。', life: 10000 });
         })
     }
 fetchDataTable();
@@ -259,6 +285,20 @@ const alert = (evt) => {
 
 }
 
+// open dialog and pass props
+const visible = ref(false);
+const dialogData = ref();
+const dialogHeader = ref();
+const testRowClick = (e) => {
+    visible.value = true;
+    dialogData.value = e.data;
+    dialogHeader.value = e.data.mainProcess +' の '+ e.data.subProcess;
+}
+const dialogWidth = computed(() => {
+    if (window.innerWidth >= 1366) return '65vw'
+    return '75vw'
+})
+
 const reset = (evt) => {
   console.log(evt) // clears the query
 }
@@ -267,6 +307,15 @@ const reset = (evt) => {
 
 <style lang="scss">
 .primevue-format {
+    &__wrap {
+        width: 100px;
+        max-height: 7.5rem;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+    }
     .p-column-filter-clear-button { display: none;};
     .p-column-filter-element {
         height: 2.5rem;
@@ -285,7 +334,7 @@ const reset = (evt) => {
         align-items: center;
     }
     .p-dropdown .p-dropdown-trigger {
-    width: 2rem;
+        width: 2rem;
     }
 }
 </style>

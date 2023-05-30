@@ -7,5 +7,15 @@
     },
     "[typescript]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
-    }
+    },
+    "tabWidth": 2,
+    "semi": false,
+    "singleQuote": true,
+    "doubleQuote": false,
+    "trailingComma": "all",
+    "printWidth": 80,
+    "endOfLine": "auto",
+    "arrowParens": "avoid",
+    "htmlWhitespaceSensitivity": "css",
+    "vueIndentScriptAndStyle": true
 }

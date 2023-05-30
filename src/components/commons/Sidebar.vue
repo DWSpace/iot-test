@@ -100,9 +100,8 @@
 
 <script setup>
 import { ref } from "vue";
-import { MENU, HOUSING_MATERIAL_DIVISION } from '~/utils/constants.js'
+import { MENU, HOUSING_MATERIAL_DIVISION } from '@/utils/constants.js'
 const is_expanded = ref(localStorage.getItem("is_expanded") === "true");
-const is_clicked = ref([]);
 const ToggleMenu = () => {
   is_expanded.value = !is_expanded.value;
   localStorage.setItem("is_expanded", is_expanded.value);

@@ -29,9 +29,9 @@
         <!-- row 1 -->
         <tr>
           <th>実施業者名</th>
-          <td style="width: 15rem;">{{ tableData.company }}</td>
+          <td style="width: 15rem;">{{ tableData?.company }}</td>
           <td style="width: 5rem; font-weight: 600;">担当者</td>
-          <td>{{ tableData.repairer }}</td>
+          <td>{{ tableData?.repairer }}</td>
         </tr>
       </tbody>
     </table>
@@ -41,37 +41,37 @@
         <!-- row 1 -->
         <tr>
           <th>実施日</th>
-          <td>{{ fromTime }} ~ {{ toTime }}&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: 600;">備考:</span> {{ tableData.isFinish ? "完了" : "継続" }}</td>
+          <td>{{ fromTime }} ~ {{ toTime }}&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: 600;">備考:</span> {{ tableData?.isFinish ? "完了" : "継続" }}</td>
         </tr>
         <!-- row 2 -->
         <tr>
           <th>グループ</th>
-          <td>{{ tableData.mainProcess }}</td>
+          <td>{{ tableData?.mainProcess }}</td>
         </tr>
         <!-- row 3 -->
         <tr>
           <th>工程</th>
-          <td>{{ tableData.subProcess }}</td>
+          <td>{{ tableData?.subProcess }}</td>
         </tr>
         <tr>
           <th>設備名称</th>
-          <td>{{ tableData.specificProcess }}</td>
+          <td>{{ tableData?.specificProcess }}</td>
         </tr>
         <tr>
           <th>不具合現象</th>
           <td style="white-space: normal;">
-            {{ tableData.phenomena }}
+            {{ tableData?.phenomena }}
           </td>
         </tr>
         <tr>
           <th>不具合原因</th>
           <td style="white-space: normal;">
-            {{ tableData.reason }}
+            {{ tableData?.reason }}
           </td>
         </tr>
         <tr>
           <th>使用部品</th>
-          <td>{{ tableData.nameOfReplacedItem }}</td>
+          <td>{{ tableData?.nameOfReplacedItem }}</td>
         </tr>
       </tbody>
     </table>
@@ -87,9 +87,9 @@
         </tr>
         <!-- row 2 -->
         <tr style="height: 2rem;">
-          <td>{{ tableData.total === 0 ? '' : tableData.total }}</td>
-          <td>{{ tableData.laborFee === 0 ? '' : tableData.laborFe }}</td>
-          <td>{{ tableData.itemCost === 0 ? '' : tableData.itemCost }}</td>
+          <td>{{ tableData?.total === 0 ? '' : tableData?.total }}</td>
+          <td>{{ tableData?.laborFee === 0 ? '' : tableData?.laborFe }}</td>
+          <td>{{ tableData?.itemCost === 0 ? '' : tableData?.itemCost }}</td>
         </tr>
       </tbody>
     </table>
@@ -100,7 +100,7 @@
         <tr style="height: 10rem;">
           <th>対処</th>
           <td style="white-space: normal;">
-            {{ tableData.comment }}
+            {{ tableData?.comment }}
           </td>
         </tr>
       </tbody>
@@ -109,21 +109,33 @@
 </template>
 <script setup>
 import dayjs from "dayjs";
-import { computed } from "vue";
+import { computed, onMounted, onUnmounted } from "vue";
+import eventBus from '@/utils/eventBus'
 
 const props = defineProps({
   tableData: {
     type: Object,
-    default: {},
+    default: () => {},
   },
 });
 const fromTime = computed (() => {
-  return dayjs(props.tableData.from*1000).format("YYYY-MM-DD HH:mm")
+  return dayjs(props.tableData?.from*1000).format("YYYY-MM-DD HH:mm")
 })
 const toTime = computed (() => {
-  return dayjs(props.tableData.to*1000).format("YYYY-MM-DD HH:mm")
+  return dayjs(props.tableData?.to*1000).format("YYYY-MM-DD HH:mm")
 })
+onMounted(() => {
+      eventBus.on('print', handleEvent);
+    });
 
+onUnmounted(() => {
+  eventBus.off('print', handleEvent);
+});
+
+// Xử lý sự kiện
+const handleEvent = () => {
+  window.print()
+};
 </script>
 <style lang="scss">
 

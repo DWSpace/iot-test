@@ -1,12 +1,11 @@
 <template>
   <div class="general-input py-8 not-print">
-    <div class="datable" style="padding-top: 0">
+    <!-- <div class="datable" style="padding-top: 0">
       <div class="grid grid-cols-[70%_30%] md:grid-cols-1 datable__searchbox">
         <div>
           <div
             class="datable__searchbox--row md:flex-col md:items-start md:w-full"
           >
-            <!-- <p>実施業者名:</p>  -->
             <p>グループ:</p>
             <InputText
               type="text"
@@ -36,6 +35,11 @@
           <Button label="ダウンロード" class="datable__btn" />
         </div>
       </div>
+    </div> -->
+    <div class="datable" style="padding-top: 0">
+      <div class="datable__searchbox text-center font-bold text-xl">
+        修理実施データ一覧
+      </div>
     </div>
 
     <div class="card primevue-format" style="padding: 0">
@@ -50,6 +54,7 @@
         :loading="loading"
         showGridlines
         style="padding: 0 5%"
+        :sortField="'from'" :sortOrder="-1"
         @row-click="testRowClick"
       >
         <template #empty> データを見つかりませんでした。</template>
@@ -342,6 +347,15 @@
     :contentStyle="{ padding: '5rem' }"
   >
     <PrintTable :tableData="dialogData"/>
+    <div v-if="dialogData.listFile && dialogData.listFile.length > 0">
+      <img v-for="(item, index) in listImg" :key="index" class="mt-8" :src="`https://woodlink-file-upload.s3.ap-northeast-1.amazonaws.com/${item}`" alt=""/>
+      <a v-for="(item, index) in listPdf" :key="index" :href="`https://woodlink-file-upload.s3.ap-northeast-1.amazonaws.com/${item}`" target="_blank">
+        <div class="download-pdf">
+          <img src="/pdf-icon.png"/>
+          {{ item.slice(0, -4) }}をPDFで開く
+        </div>
+      </a>
+    </div>
     <template #footer>
       <Button label="印刷" icon="pi pi-print" severity="warning" @click="eventBus.emit('print')"/>
       <Button label="解消" icon="pi pi-trash" severity="danger" @click="del" />
@@ -395,9 +409,7 @@ const startTime = ref()
 const endTime = ref()
 const mainProcess = ref()
 const subProcess = ref()
-const value = ref()
-const startDate = ref()
-const endDate = ref()
+
 const editVisible = ref(false)
 
 const triggerEdit = () => {
@@ -466,9 +478,12 @@ const fetchDataTable = async () => {
 }
 fetchDataTable()
 
-const alert = (evt) => {
-  console.log(evt) // clears the query
-}
+const listImg = computed(() => {
+  return dialogData.value.listFile.filter( x => x.includes('png') || x.includes('jpg')  ||  x.includes('jpeg'))
+})
+const listPdf = computed(() => {
+  return dialogData.value.listFile.filter( x => x.includes('pdf'))
+})
 
 // open dialog and pass props
 const visible = ref(false);
@@ -482,12 +497,13 @@ const testRowClick = (e) => {
   dialogHeader.value = e.data.mainProcess + ' の ' + e.data.subProcess;
 }
 
-// delete row
+// delete row and file of this row, delete file will happen first the delete row
 const del = async () => {
   const delData = {
     mainProcess: dialogData.value.mainProcess,
     from: dialogData.value.from,
   }
+  dialogData.value?.listFile?.forEach(f => deleteFile(f))
   await $axios
     .delete('/del', {data: delData})
     .then(() => {
@@ -510,6 +526,21 @@ const del = async () => {
       })
     }) 
 }
+
+const deleteFile = async (filename) => {
+  await $axios.delete(`https://woodlink-file-upload.s3.ap-northeast-1.amazonaws.com/${filename}`)
+  .then(response => {
+    toast.add({
+        severity: 'error',
+        summary: '解消しました。',
+        detail: '実施書のファイルも解消されました。',
+        life: 10000,
+      });
+  })
+  .catch(error => {
+    console.log(error);
+  });
+};
 const dialogWidth = computed(() => {
   if (window.innerWidth >= 1366) return '65vw'
   return '75vw'
@@ -521,6 +552,21 @@ const dialogWidth = computed(() => {
 </script>
 
 <style lang="scss" scoped>
+
+.download-pdf {
+  display: flex;
+  margin-top: 2rem;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid grey;
+  img {
+    width: 2rem;
+    height: auto;
+  }
+}
+
 @media print {
   div.not-print {
     display: none;

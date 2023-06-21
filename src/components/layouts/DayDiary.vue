@@ -1,6 +1,6 @@
 <template>
   <div
-    class="not-print max-w-4xl relative left-1/2 move-left bg-white text-gray-900 lg:p-5 font-NotoJP"
+    class="day-diary not-print max-w-4xl relative left-1/2 move-left bg-white text-gray-900 lg:p-5 font-NotoJP"
     :style="{padding: isTriggerPadding ? '6rem' : 0 }"
   >
     <p class="text-center font-bold text-2xl">工事（修理）実施報告書</p>
@@ -251,6 +251,20 @@
         ></textarea>
       </div>
     </form>
+    <div class="card mt-8">
+      <FileUpload ref="fileUploadRef" 
+        customUpload 
+        @uploader="onAdvancedUpload" 
+        @select="assignFile($event)" 
+        :multiple="true" 
+        :showUploadButton="false"
+        accept="image/*, .pdf" 
+        :maxFileSize="1100000">
+        <template #empty>
+            <p>現在アップロードするファイルがありません。</p>
+        </template>
+      </FileUpload>
+    </div>
     <div class="flex gap-5">
       <button
         v-if="props.editData"
@@ -363,6 +377,9 @@ const parseAfterDate = computed(() => {
   return dayjs(dateAfterParse.value).unix();
 });
 
+const listFile = computed(() => {
+  return file.value?.map( f => f.name )
+})
 const err = ref();
 const props = defineProps({
   editData: {
@@ -394,6 +411,7 @@ let objData = reactive({
     itemCost: 0,
     comment: "",
     input_time: dayjs().unix(),
+    listFile: listFile || []
   },
 });
 
@@ -429,6 +447,87 @@ const handleDateTimeChange = () => {
   if (props.editData) {
     objData.data.from = dayjs(dateBeforeParse.value).unix();
   }
+}
+
+const file = ref()
+const fileUploadRef = ref(null);
+const linkUploadButtonToThisButton = () => {
+  // Truy cập đến component FileUpload thông qua ref
+  if (fileUploadRef.value) {
+    fileUploadRef.value.upload(); // Gọi hàm upload() của FileUpload để bắt đầu upload
+  }
+};
+const assignFile = (e) => {
+  file.value = e.files
+}
+const onAdvancedUpload = () => {
+  file.value?.forEach(async(element) => {
+    if (element.name.includes('png') || element.name.includes('jpg')  ||  element.name.includes('jpeg')) await submitImg(element)
+    if (element.name.includes('pdf')) await submitPdf(element)
+  });
+}
+const submitImg = async (f) => {
+  await axios.put(`https://fectzc9e60.execute-api.ap-northeast-1.amazonaws.com/v1/woodlink-file-upload/${f.name}`,
+    f,
+    {
+      headers: {
+        'Content-Type': f.type
+      },
+    }
+  ).then(function(){
+    totalFile++;
+    toast.add({
+            severity: 'success',
+            summary: f.name + 'をアップロードしました',
+            detail: f.name + 'が保存されました。',
+            life: 10000,
+          })
+  })
+  .catch(function(){
+    toast.add({
+            severity: 'error',
+            summary: 'エラー',
+            detail: 'サーバーからデータを取得できません。',
+            life: 10000,
+          })
+  });
+}
+const submitPdf = async (f) => {
+  const formData = new FormData();
+  formData.append('file', f);
+  await axios.put(`https://fectzc9e60.execute-api.ap-northeast-1.amazonaws.com/v1/woodlink-file-upload/${f.name}`,
+  formData,
+    {
+      headers: {
+        'Content-Type': 'application/pdf'
+      },
+    }
+  ).then(function(){
+    totalFile++;
+    toast.add({
+            severity: 'success',
+            summary: f.name + 'をアップロードしました',
+            detail: f.name + 'が保存されました。',
+            life: 10000,
+          })
+  })
+  .catch(function(){
+    toast.add({
+            severity: 'error',
+            summary: 'エラー',
+            detail: 'サーバーからデータを取得できません。',
+            life: 10000,
+          })
+  });
+}
+
+// hàm này đợi đến khi upload xong hết thì mới reload page
+let totalFile = 0;
+const waitForUploadComplete = async() => {
+  while (totalFile !== listFile.value.length) {
+    await new Promise(resolve => setTimeout(resolve, 1000)); // Chờ 1 giây
+  }
+  setTimeout(() => {location.reload()}, 2000);
 }
 
 // Khối code xử lý update
@@ -529,8 +628,14 @@ const printPaper = () => {
 };
 const resetObjData = async () => {
   document.getElementById("my-modal").checked = false;
+  const isOK = validateObj(objData);
   await saveData();
-  location.reload()
+  if (isOK && listFile.value?.length) {
+    linkUploadButtonToThisButton()
+    waitForUploadComplete()
+  }
+  if (isOK && !listFile.value?.length) location.reload() 
+  // else return
 };
 </script>
 
@@ -556,6 +661,15 @@ const resetObjData = async () => {
     left: 0;
     margin: 0;
     padding: 25px;
+  }
+}
+</style>
+<style lang="scss">
+.day-diary {
+  .p-fileupload-file {
+    img {
+      display: none;
+    }
   }
 }
 </style>

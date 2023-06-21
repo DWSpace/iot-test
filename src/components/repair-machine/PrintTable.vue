@@ -1,11 +1,11 @@
 <template>
   <div class="max-w-4xl relative left-1/2 move-left bg-white text-gray-900 p-5font-NotoJP">
-    <p class="text-center font-bold text-2xl">工事（修理）実施報告事</p>
+    <p class="text-center font-bold text-2xl">工事（修理）実施報告書</p>
     <p class="text-right font-medium text-xl pt-5">ウッドリンク株式会社</p>
     <p class="text-right font-medium text-xl">住宅資材事業部</p>
-    <p class="text-left font-medium text-xl pt-7">名業者の方へ</p>
+    <p class="text-left font-medium text-xl pt-7">各業者の方へ</p>
     <p class="text-center font-medium text-xl p-5 mb-5">
-      この報告書と請求書と照合し、確認した上でお支払い致します。
+      この報告書と請求書を照合し、確認した上でお支払い致します。
     </p>
 
     <table class="table w-60 text-center" align="right">

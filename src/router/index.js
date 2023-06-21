@@ -8,6 +8,9 @@ const router = createRouter({
       path: "/",
       name: "home",
       component: Home,
+      meta: {
+        title: "ホームページ | Woodlink",
+      },
     },
     {
       path: "/graph",
@@ -22,7 +25,7 @@ const router = createRouter({
       name: "general",
       component: () => import("../components/layouts/General.vue"),
       meta: {
-        title: "trang general",
+        title: "データ表示 | Woodlink",
       },
     },
     {
@@ -30,7 +33,7 @@ const router = createRouter({
       name: "diary",
       component: () => import("../components/layouts/DayDiary.vue"),
       meta: {
-        title: "lam trang nhat ky",
+        title: "入力フォーム | Woodlink",
       },
     },
     {

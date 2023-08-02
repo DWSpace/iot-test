@@ -259,7 +259,7 @@
         :multiple="true" 
         :showUploadButton="false"
         accept="image/*, .pdf" 
-        :maxFileSize="1100000">
+        :maxFileSize="10000000">
         <template #empty>
             <p>現在アップロードするファイルがありません。</p>
         </template>
